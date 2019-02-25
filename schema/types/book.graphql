@@ -1,0 +1,4 @@
+type Book {
+    _id: String,
+    name: String
+}

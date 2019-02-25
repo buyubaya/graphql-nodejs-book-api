@@ -1,0 +1,10 @@
+type tuci {
+    _id: ID
+    tuciValue: Float
+    tuciType: String
+    tuciCategory: tuciCategory
+    tuciNote: String
+    createdAt: String
+    updatedAt: String
+    relatedTuci(tuciType: String): [tuci]
+}

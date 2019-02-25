@@ -1,0 +1,7 @@
+type tuciCategory {
+    _id: ID
+    name: String
+    tuciType: String
+    createdAt: String
+    updatedAt: String
+}

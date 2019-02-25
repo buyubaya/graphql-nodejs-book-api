@@ -1,0 +1,56 @@
+type money {
+    id: ID
+    value: Int
+    moneyType: Int
+    moneyCategoryId: ID
+    created: String
+    userId: ID
+    haha(id: String): HAHA
+}
+
+type moneyCategory {
+    id: ID
+    name: String
+    moneyType: Int
+    userId: ID  
+}
+
+type HAHA {
+    id: ID
+    text: String
+    monies(id: String): money
+}
+
+type Query {
+    moneyCategories(moneyType: Int): [moneyCategory]
+    monies: [money]
+    haha(id: String): HAHA
+
+    tuci(id: ID): [tuci]
+    tuciCategory(id: ID): [tuciCategory]
+    tuciListByType: [tuci]
+
+    book: [Book]
+}
+
+input inputTuci {
+    tuciValue: Float
+    tuciType: String
+    tuciCategoryId: ID
+    tuciNote: String
+}
+
+type LoginToken {
+    token: String
+}
+
+type Mutation {
+    addMoneyCategory(name: String!, moneyType: Int!, userId: ID!): ID
+    removeMoneyCategory(id: ID!): ID
+    updateMoneyCategory(id: ID!, name: String): ID
+    test(id: String): money
+
+    addTuci(data: inputTuci): tuci
+
+    loginByUserNameAndPassword(userName: String!, password: String!): LoginToken
+}
