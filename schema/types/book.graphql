@@ -12,7 +12,7 @@ type Book {
 }
 
 type Query {
-    book(id: ID): [Book]
+    book(id: ID, page: Int): [Book]
 }
 
 

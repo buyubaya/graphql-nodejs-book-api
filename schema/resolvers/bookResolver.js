@@ -7,11 +7,16 @@ const BrandList = require('../../mocks/Brand');
 
 const bookResolver = {
     Query: {
-        book: (_, { id }) => {
+        book: (_, { id, page }) => {
             if(id){
-                console.log('BOOK ID: ', id, _);
                 const item = BookList.find(item => item._id === id);
                 return [item];
+            }
+
+            if(page){
+                const limit = 2;
+                const list = BookList.slice(limit * (page - 1), limit * page);
+                return list;
             }
 
             return BookList;
