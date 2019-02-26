@@ -1,0 +1,11 @@
+type Author {
+    _id: ID!,
+    name: String!,
+    img: String,
+    createdAt: String,
+    updatedAt: String
+}
+
+type Query {
+    author(id: ID): [Author]
+}

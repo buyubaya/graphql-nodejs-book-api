@@ -1,0 +1,135 @@
+const BookList = [
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549089955226_thieunhi_1.jpg?alt=media&token=915d9323-f552-454d-b768-7cba94c0967f",
+        "price": 110,
+        "category": "5c4fe1266e05a314d07e5303",
+        "author": "5c4fdfc733b71b20c810ccfb",
+        "brand": "5c4fdff233b71b20c810ccfc",
+        "description": "Những Tấm Lòng Cao Cả",
+        "_id": "5c5303d902598f221c8d9d31",
+        "name": "Những Tấm Lòng Cao Cả",
+        "createdAt": "2019-01-31T14:19:05.915Z",
+        "updatedAt": "2019-02-03T05:41:01.652Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090002357_thieunhi_2.jpg?alt=media&token=0a236ec5-23c4-429d-b891-87dab08902ac",
+        "price": 120,
+        "category": "5c4fe1266e05a314d07e5303",
+        "author": "5c4fc542855f4c0004cda5d5",
+        "brand": "5c4fcbb9855f4c0004cda5de",
+        "description": "Nhật Ký Chú Bé Nhút Nhát",
+        "_id": "5c53f36837510d291d5605b5",
+        "name": "Nhật Ký Chú Bé Nhút Nhát",
+        "createdAt": "2019-02-01T07:21:12.190Z",
+        "updatedAt": "2019-02-03T05:41:05.242Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090045438_thieunhi_3.jpg?alt=media&token=59a94cbf-0b09-47d1-bf54-52e1dc9c3492",
+        "price": 130,
+        "category": "5c4fe1266e05a314d07e5303",
+        "author": "5c4fc56b855f4c0004cda5d6",
+        "brand": "5c4fcbe2855f4c0004cda5df",
+        "description": "Viết Cho Những Điều Bé Nhỏ - Tết Xưa Thơ Bé",
+        "_id": "5c553cfd5d0b0b000439522b",
+        "name": "Viết Cho Những Điều Bé Nhỏ - Tết Xưa Thơ Bé",
+        "createdAt": "2019-02-02T06:47:25.926Z",
+        "updatedAt": "2019-02-03T05:41:08.659Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090076855_thieunhi_4.jpg?alt=media&token=20abcb6b-bacb-4f55-8ac3-215cd979b46d",
+        "price": 140,
+        "category": "5c4fe1266e05a314d07e5303",
+        "author": "5c4fc582855f4c0004cda5d7",
+        "brand": "5c4fcbf3855f4c0004cda5e0",
+        "description": "Ba Ngày Ở Nước Tí Hon",
+        "_id": "5c553d1d5d0b0b000439522c",
+        "name": "Ba Ngày Ở Nước Tí Hon",
+        "createdAt": "2019-02-02T06:47:57.187Z",
+        "updatedAt": "2019-02-03T05:41:11.684Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090128420_thieunhi_5.jpg?alt=media&token=8584f82c-0e6d-4b1d-aad2-7f07c4c5bfbe",
+        "price": 150,
+        "category": "5c4fe1266e05a314d07e5303",
+        "author": "5c4fc591855f4c0004cda5d8",
+        "brand": "5c4fcc0a855f4c0004cda5e1",
+        "description": "100 Khoảnh Khắc Thiên Tài Làm Thay Đổi Thế Giới",
+        "_id": "5c553d505d0b0b000439522d",
+        "name": "100 Khoảnh Khắc Thiên Tài Làm Thay Đổi Thế Giới",
+        "createdAt": "2019-02-02T06:48:48.750Z",
+        "updatedAt": "2019-02-03T05:41:15.068Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090277692_vanhoc_1.jpg?alt=media&token=6a878614-b835-4687-9060-12702596af25",
+        "price": 210,
+        "category": "5c4fe1326e05a314d07e5304",
+        "author": "5c4fc5b6855f4c0004cda5d9",
+        "brand": "5c4fcc47855f4c0004cda5e2",
+        "description": "Thanh Xuân Không Hối Tiếc",
+        "_id": "5c553de65d0b0b000439522e",
+        "name": "Thanh Xuân Không Hối Tiếc",
+        "createdAt": "2019-02-02T06:51:18.012Z",
+        "updatedAt": "2019-02-03T05:41:25.940Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090326889_vanhoc_2.jpg?alt=media&token=cd244c3b-cfde-48b7-a1b8-7b88106364e0",
+        "price": 220,
+        "category": "5c4fe1326e05a314d07e5304",
+        "author": "5c4fc5ca855f4c0004cda5da",
+        "brand": "5c4fcc52855f4c0004cda5e3",
+        "description": "Nam Và Sylvie",
+        "_id": "5c553e175d0b0b000439522f",
+        "name": "Nam Và Sylvie",
+        "createdAt": "2019-02-02T06:52:07.196Z",
+        "updatedAt": "2019-02-03T05:41:29.608Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090373267_vanhoc_3.jpg?alt=media&token=7760fba7-b929-4257-87d1-9d0013963a8f",
+        "price": 230,
+        "category": "5c4fe1326e05a314d07e5304",
+        "author": "5c4fc5dd855f4c0004cda5db",
+        "brand": "5c4fcc63855f4c0004cda5e4",
+        "description": "Bước Chân Theo Dấu Mặt Trời – Hành Trình Trở Về Ấn Độ",
+        "_id": "5c553e455d0b0b0004395230",
+        "name": "Bước Chân Theo Dấu Mặt Trời – Hành Trình Trở Về Ấn Độ",
+        "createdAt": "2019-02-02T06:52:53.734Z",
+        "updatedAt": "2019-02-03T05:41:32.859Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090400565_vanhoc_4.jpg?alt=media&token=16b1336a-e200-4195-a0e8-6899c536797d",
+        "price": 240,
+        "category": "5c4fe1326e05a314d07e5304",
+        "author": "5c4fc5e7855f4c0004cda5dc",
+        "brand": "5c4fcc8a855f4c0004cda5e5",
+        "description": "Bạn Đắt Giá Bao Nhiêu?",
+        "_id": "5c553e605d0b0b0004395231",
+        "name": "Bạn Đắt Giá Bao Nhiêu?",
+        "createdAt": "2019-02-02T06:53:20.941Z",
+        "updatedAt": "2019-02-03T05:41:35.952Z",
+        "__v": 0
+    },
+    {
+        "img": "https://firebasestorage.googleapis.com/v0/b/nodejs-book-api.appspot.com/o/1549090424071_vanhoc_5.jpg?alt=media&token=23a36772-ead4-4718-82f2-eba62d8c9c4f",
+        "price": 250,
+        "category": "5c4fe1326e05a314d07e5304",
+        "author": "5c4fc607855f4c0004cda5dd",
+        "brand": "5c4fcc95855f4c0004cda5e6",
+        "description": "Khi Hơi Thở Hóa Thinh Không",
+        "_id": "5c553e785d0b0b0004395232",
+        "name": "Khi Hơi Thở Hóa Thinh Không",
+        "createdAt": "2019-02-02T06:53:44.446Z",
+        "updatedAt": "2019-02-03T05:41:38.617Z",
+        "__v": 0
+    }
+];
+
+
+module.exports = BookList;

@@ -1,0 +1,11 @@
+type Category {
+    _id: ID!,
+    name: String!,
+    img: String,
+    createdAt: String,
+    updatedAt: String
+}
+
+type Query {
+    category(id: ID): [Category]
+}

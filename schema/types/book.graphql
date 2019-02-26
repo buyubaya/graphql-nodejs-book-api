@@ -1,4 +1,38 @@
 type Book {
-    _id: String,
-    name: String
+    _id: ID!,
+    name: String!,
+    img: String,
+    price: Float,
+    description: String,
+    category: Category,
+    author: Author,
+    brand: Brand
+    createdAt: String,
+    updatedAt: String,
+}
+
+type Query {
+    book(id: ID): [Book]
+}
+
+
+# ADD BOOK
+input AddBook {
+    name: String!,
+    img: Upload,
+    price: Float,
+    description: String,
+    category: ID!,
+    author: ID,
+    brand: ID
+}
+
+type BookResponse {
+    status: Int,
+    message: String,
+    data: String
+}
+
+type Mutation {
+    addBook(data: AddBook): BookResponse
 }

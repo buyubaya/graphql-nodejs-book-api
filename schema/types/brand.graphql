@@ -1,0 +1,11 @@
+type Brand {
+    _id: ID!,
+    name: String!,
+    img: String,
+    createdAt: String,
+    updatedAt: String
+}
+
+type Query {
+    brand(id: ID): [Brand]
+}

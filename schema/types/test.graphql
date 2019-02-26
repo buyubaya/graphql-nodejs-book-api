@@ -29,8 +29,6 @@ type Query {
     tuci(id: ID): [tuci]
     tuciCategory(id: ID): [tuciCategory]
     tuciListByType: [tuci]
-
-    book: [Book]
 }
 
 input inputTuci {

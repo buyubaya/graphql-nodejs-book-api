@@ -1,47 +1,44 @@
 const Book = require('../../models/Book');
+const BookList = require('../../mocks/Book');
+const CategoryList = require('../../mocks/Category');
+const AuthorList = require('../../mocks/Author');
+const BrandList = require('../../mocks/Brand');
 
 
 const bookResolver = {
     Query: {
-        book: () => {
-            console.log('BOOK BOOK');
-            // return Book.find()
-            // .exec()
-            // .then(data => {
-            //     console.log(22222, data);
-            //     return(
-            //         [
-            //             {_id: '11111', name: 'Book 01'},
-            //             {_id: '22222', name: 'Book 25'}
-            //         ]
-            //     );
-            // });
-            return([
-                {_id: '11111', name: 'Book 01'},
-                {_id: '22222', name: 'Book 25'}
-            ]);
+        book: (_, { id }) => {
+            if(id){
+                console.log('BOOK ID: ', id, _);
+                const item = BookList.find(item => item._id === id);
+                return [item];
+            }
+
+            return BookList;
+        }
+    },
+    Book: {
+        category: (parent, _) => {
+            const item = CategoryList.find(item => item._id === parent.category)
+            return item;
+        },
+        author: (parent, _) => {
+            const item = AuthorList.find(item => item._id === parent.author)
+            return item;
+        },
+        brand: (parent, _) => {
+            const item = BrandList.find(item => item._id === parent.brand)
+            return item;
         }
     },
     Mutation: {
-        addTuci: async (_, { data: { tuciValue, tuciType, tuciCategoryId, tuciNote } }) => {
-            let promise = await fetch("http://localhost:5000/tuci/add",
-                {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    method: "POST",
-                    body: JSON.stringify({
-                        tuciValue,
-                        tuciType,
-                        tuciCategoryId,
-                        tuciNote,
-                    })
-                });
-            promise = await promise.json();
-            promise = await promise.data;
-
-            return promise;
+        addBook: (_, { data }) => {
+            console.log('ADD BOOK', data);
+            return {
+                status: 200,
+                message: 'Successful',
+                data: JSON.stringify(data)
+            };
         }
     }
 };

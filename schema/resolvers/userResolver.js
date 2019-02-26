@@ -1,15 +1,20 @@
 const jwt = require('jsonwebtoken');
 
+
 const userResolver = {
     Mutation: {
-        loginByUserNameAndPassword: (_, { userName, password }) => {
-            const token = jwt.sign({ userName, password }, 'hello', { expiresIn: 60 });
-            jwt.verify(token, 'hello', function (err, decoded) {
-                console.log('DECODED', decoded);
+        login: (_, { username, password }) => {
+            const token = jwt.sign({ username, password }, 'secret', { expiresIn: 60 });
+            return jwt.verify(token, 'secret', function (err, decoded) {
+                if(decoded.username === 'admin' && decoded.password === 'P@ssword123'){
+                    return { token };
+                }
+                return { error: 'Invalid Username or Password' };
             });
-            return { token };
+            
         }
     }
-}
+};
+
 
 module.exports = userResolver;
