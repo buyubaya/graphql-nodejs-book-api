@@ -1,8 +1,9 @@
 type LoginResponse {
+    username: String,
     token: String,
     error: String
 }
 
 type Mutation {
-    login(username: String!, password: String!): LoginResponse
+    login(username: String!, password: String!, file: Upload): LoginResponse
 }

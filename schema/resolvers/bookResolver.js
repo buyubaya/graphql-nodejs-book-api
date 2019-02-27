@@ -10,17 +10,32 @@ const bookResolver = {
         book: (_, { id, page }) => {
             if(id){
                 const item = BookList.find(item => item._id === id);
-                return [item];
+                return item;
             }
 
             if(page){
                 const limit = 2;
                 const list = BookList.slice(limit * (page - 1), limit * page);
-                return list;
+                return { list, count: 10 };
             }
 
-            return BookList;
+            return {
+                list: BookList, count: 10
+            };
         }
+    },
+    BookQueryResponse: {
+        __resolveType(obj, context, info){
+            if(obj.list){
+                return 'BookListResponse';
+            }
+      
+            if(obj._id){
+                return 'Book';
+            }
+      
+            return null;
+        },
     },
     Book: {
         category: (parent, _) => {

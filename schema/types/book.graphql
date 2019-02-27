@@ -11,8 +11,15 @@ type Book {
     updatedAt: String,
 }
 
+type BookListResponse {
+    list: [Book],
+    count: Int
+}
+
+union BookQueryResponse = BookListResponse | Book
+
 type Query {
-    book(id: ID, page: Int): [Book]
+    book(id: ID, page: Int): BookQueryResponse
 }
 
 
@@ -34,5 +41,6 @@ type BookResponse {
 }
 
 type Mutation {
-    addBook(data: AddBook): BookResponse
+    addBook(data: AddBook): BookResponse,
+    editBook(data: AddBook): BookResponse
 }
