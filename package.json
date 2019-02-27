@@ -12,11 +12,14 @@
 	"license": "ISC",
 	"dependencies": {
 		"@google-cloud/storage": "1.7.0",
+		"apollo-server": "^2.4.8",
 		"apollo-server-express": "^2.4.6",
+		"apollo-upload-server": "^7.1.0",
 		"bcrypt": "^1.0.3",
 		"body-parser": "^1.18.3",
 		"express": "^4.16.4",
 		"graphql": "^14.1.1",
+		"graphql-upload": "^8.0.4",
 		"jsonwebtoken": "^8.4.0",
 		"mongoose": "^5.4.5",
 		"multer": "^1.4.1"
