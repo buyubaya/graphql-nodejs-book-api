@@ -1,4 +1,5 @@
 const Book = require('../../models/Book');
+const BookController = require('../../controllers/BookControllers');
 const BookList = require('../../mocks/Book');
 const CategoryList = require('../../mocks/Category');
 const AuthorList = require('../../mocks/Author');
@@ -8,6 +9,16 @@ const BrandList = require('../../mocks/Brand');
 const bookResolver = {
     Query: {
         book: (_, { id, page }) => {
+            // const _id = '5c553cfd5d0b0b000439522b';
+            // Book.findById(_id)
+            // .exec()
+            // .then(doc => {
+            //     console.log(22222, doc);
+            // })
+            // .catch(err => {
+            //     console.log(11111, err);
+            // });
+
             if(id){
                 const item = BookList.find(item => item._id === id);
                 return item;
@@ -16,11 +27,11 @@ const bookResolver = {
             if(page){
                 const limit = 2;
                 const list = BookList.slice(limit * (page - 1), limit * page);
-                return { list, count: 10 };
+                return { list, count: BookList.length };
             }
 
             return {
-                list: BookList, count: 10
+                list: BookList, count: BookList.length
             };
         }
     },

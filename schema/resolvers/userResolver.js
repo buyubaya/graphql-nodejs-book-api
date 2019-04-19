@@ -11,8 +11,7 @@ const userResolver = {
     Upload: apolloServerExpress.GraphQLUpload,
     Mutation: {
         login: async (_, { username, password, file }) => {
-            const { stream, filename, mimetype, encoding } = await file;
-            console.log('UPLOAD FILE', file, filename);
+            console.log('UPLOAD FILE', file);
             const token = jwt.sign({ username, password }, 'secret', { expiresIn: 60 });
             return jwt.verify(token, 'secret', function (err, decoded) {
                 if(decoded.username === 'admin' && decoded.password === 'P@ssword123'){
