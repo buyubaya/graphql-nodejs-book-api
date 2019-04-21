@@ -1,4 +1,5 @@
 const AuthorList = require('../../mocks/Author');
+const Author = require('../../models/Author');
 
 
 const authorResolver = {
@@ -10,6 +11,7 @@ const authorResolver = {
                 return [item];
             }
             
+            return Author.find().then(data => data);
             return AuthorList;
         }
     }

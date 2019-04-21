@@ -1,5 +1,8 @@
 const Book = require('../../models/Book');
-const BookController = require('../../controllers/BookControllers');
+const Category = require('../../models/Category');
+const Author = require('../../models/Author');
+const Brand = require('../../models/Brand');
+const BookController = require('../../controllers/BookController');
 const BookList = require('../../mocks/Book');
 const CategoryList = require('../../mocks/Category');
 const AuthorList = require('../../mocks/Author');
@@ -8,31 +11,27 @@ const BrandList = require('../../mocks/Brand');
 
 const bookResolver = {
     Query: {
-        book: (_, { id, page }) => {
-            // const _id = '5c553cfd5d0b0b000439522b';
-            // Book.findById(_id)
-            // .exec()
-            // .then(doc => {
-            //     console.log(22222, doc);
-            // })
-            // .catch(err => {
-            //     console.log(11111, err);
-            // });
-
+        book: (_, { id, ...options }) => {           
             if(id){
-                const item = BookList.find(item => item._id === id);
-                return item;
+                return BookController.getById(id)
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    return {
+                        _id: id,
+                        name: 'ERROR'
+                    };
+                });
             }
-
-            if(page){
-                const limit = 2;
-                const list = BookList.slice(limit * (page - 1), limit * page);
-                return { list, count: BookList.length };
-            }
-
-            return {
-                list: BookList, count: BookList.length
-            };
+            
+            return BookController.getAll(options)
+            .then(data => {
+                return data;
+            })
+            .catch(err => {
+                return [];
+            });
         }
     },
     BookQueryResponse: {
@@ -46,20 +45,55 @@ const bookResolver = {
             }
       
             return null;
-        },
+        }
     },
     Book: {
         category: (parent, _) => {
-            const item = CategoryList.find(item => item._id === parent.category)
-            return item;
+            return Category.findById(parent.category)
+            .then(data => data);
         },
         author: (parent, _) => {
-            const item = AuthorList.find(item => item._id === parent.author)
-            return item;
+            return Author.findById(parent.author)
+            .then(data => data);
         },
         brand: (parent, _) => {
-            const item = BrandList.find(item => item._id === parent.brand)
-            return item;
+            return Brand.findById(parent.brand)
+            .then(data => data);
+        },
+        relatedBook: (parent, { page: _page, limit: _limit }, aa, bb) => {
+            let page = _page || 1;
+            const limit = _limit || 10;
+            
+            return Book.find({
+                _id: { $ne: parent._id },
+                $or: [
+                    { category: parent.category._id },
+                    { author:  parent.author._id },
+                    { brand:  parent.brand._id }
+                ]
+            })
+            .then(data => {
+                const list = data && data.slice((page - 1 ) * limit, page * limit);
+
+                return({
+                    list,
+                    page,
+                    limit,
+                    count: data.length
+                });
+            });
+               
+            return BookController.getAll({
+                ...options, 
+                category: parent.category._id,
+                _id: { $ne: parent._id }
+            })
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    return [];
+                });
         }
     },
     Mutation: {

@@ -1,4 +1,5 @@
 const CategoryList = require('../../mocks/Category');
+const Category = require('../../models/Category');
 
 
 const categoryResolver = {
@@ -11,6 +12,7 @@ const categoryResolver = {
                 return [item];
             }
             
+            return Category.find().then(data => data);
             return CategoryList;
         }
     }

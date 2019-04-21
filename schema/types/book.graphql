@@ -6,20 +6,28 @@ type Book {
     description: String,
     category: Category,
     author: Author,
-    brand: Brand
+    brand: Brand,
+    relatedBook(page: Int, limit: Int): BookListResponse,
     createdAt: String,
     updatedAt: String,
 }
 
 type BookListResponse {
     list: [Book],
-    count: Int
+    count: Int,
+    page: Int,
+    limit: Int
 }
 
 union BookQueryResponse = BookListResponse | Book
 
 type Query {
-    book(id: ID, page: Int): BookQueryResponse
+    book(
+        id: ID, 
+        page: Int, limit: Int, 
+        category: String, author: String, brand: String, 
+        sort: String, search: String
+    ): BookQueryResponse
 }
 
 

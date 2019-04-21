@@ -2,9 +2,9 @@
 const apolloServerExpress = require('apollo-server-express');
 const typeDefs = require('./schema/typeDefs');
 const resolvers = require('./schema/resolvers');
-// const app = require('./app');
-const express = require('express');
-const app = express();
+const app = require('./app');
+// const express = require('express');
+// const app = express();
 
 
 const server = new apolloServerExpress.ApolloServer({

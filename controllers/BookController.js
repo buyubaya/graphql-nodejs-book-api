@@ -15,17 +15,26 @@ exports.getById = (id) => {
     .exec();
 };
 
-exports.getAll = async (options) => {    
+exports.getAll = async ({
+    page: _page,
+    limit: _limit,
+    sort: _sort,
+    search: _search,
+    category: _category,
+    author: _author,
+    brand: _brand,
+    ...rest
+}) => {    
     // PAGINATION
-    let page = options.page ? options.page * 1 : 1;
+    let page = _page ? _page * 1 : 1;
     if(page < 1){
         page = 1;
     }
-    const limit = options.limit ? options.limit * 1 : 10;
+    const limit = _limit ? _limit * 1 : 10;
     // SORT
     let sortOption = {};
-    if(options.sort){
-        const sort = options.sort;
+    if(_sort){
+        const sort = _sort;
         if(sort === 'latest'){
             sortOption['createdAt'] = -1;
         }
@@ -47,22 +56,22 @@ exports.getAll = async (options) => {
     }
     // SEARCH CATEGORY
     let searchOption = {};
-    if(options.category){
+    if(_category){
         const cateList = await Category.find().exec();
-        const cateOptions = findRelativeChildren(cateList, options.category);
+        const cateOptions = findRelativeChildren(cateList, _category);
         searchOption['category'] = { $in: cateOptions };
     }
     // SEARCH AUTHOR
-    if(options.author){
-        searchOption['author'] = options.author;
+    if(_author){
+        searchOption['author'] = _author;
     }
     // SEARCH BRAND
-    if(options.brand){
-        searchOption['brand'] = options.brand;
+    if(_brand){
+        searchOption['brand'] = _brand;
     }
     // SEARCH NAME
-    if(options.search){
-        let search = options.search.toLowerCase();
+    if(_search){
+        let search = _search.toLowerCase();
         search = search.replace('a', '(a|á|à|ả|ã|ạ|ă|â)');
         search = search.replace('ă', '(ă|ắ|ằ|ẳ|ẵ|ặ)');
         search = search.replace('â', '(â|ấ|ầ|ẩ|ẫ|ậ)');
@@ -83,11 +92,11 @@ exports.getAll = async (options) => {
     //     .populate('category', '_id name')
     //     .populate('author', '_id name')
     //     .populate('brand', '_id name');
-    return Book.find(searchOption)
+    return Book.find({ ...searchOption, ...rest })
         .sort(sortOption)
-        .populate('category', '_id name')
-        .populate('author', '_id name')
-        .populate('brand', '_id name')
+        // .populate('category', '_id name')
+        // .populate('author', '_id name')
+        // .populate('brand', '_id name')
         // .limit(limit)
         // .skip(limit * (page - 1))
         .exec()
